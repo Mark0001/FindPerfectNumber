@@ -12,8 +12,8 @@ public class MainUseTreadPool {
 
     private static int interval = 30;
 
-    private static int max = 34000000;
-    //    private static int max = 10000;
+    //    private static int max = 34000000;
+    private static int max = 8000000;
 
     public static synchronized void addRank(final int number) {
         rank.add(number);
@@ -21,12 +21,13 @@ public class MainUseTreadPool {
 
     public static void main(final String[] args) throws InterruptedException {
 
-        final ExecutorService executor = Executors.newFixedThreadPool(2);
+        final int availableProcessors = Runtime.getRuntime().availableProcessors();
+        System.out.println("我可以使用的邏輯處理器" + availableProcessors);
+        final ExecutorService executor = Executors.newFixedThreadPool(availableProcessors - 1); // 不想用100% cpu跑
 
         final long start = System.currentTimeMillis();
         for (int i = 1; i < max; i += interval) {
             final Worker worker = new Worker(i, i + (interval - 1));
-            worker.join();
             executor.execute(worker);
         }
 
