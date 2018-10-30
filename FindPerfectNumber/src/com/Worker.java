@@ -14,16 +14,10 @@ public class Worker extends Thread {
 
     @Override
     public void run() {
-        try {
-            sleep(2000);
-            System.out.println(getName() + "執行緒開始執行");
-        } catch (final InterruptedException e) {
-            e.printStackTrace();
-        }
         final List<Integer> list = new ArrayList<Integer>();
 
         for (int i = this.start; i <= this.end; i++) {
-            //            System.out.println(getName() + "正在看" + i + "是不是完全數");
+            //            System.out.println(Thread.currentThread().getName() + "正在看" + i + "是不是完全數");
             int temp = 1;
             for (int count = 2; count < Math.sqrt(i); count++) {
                 if (i % count == 0) {
@@ -41,13 +35,13 @@ public class Worker extends Thread {
                 if (temp == 1) {
                     continue;
                 }
+                System.out.println(i + "是完美數字喔");
                 list.add(i);
-                Main.addRank(i);
-                continue;
+                MainUseTreadPool.addRank(i);
             }
         }
 
-        System.out.println(list.toString());
+        //        System.out.println(list.toString());
     }
 
     public static void main(final String[] args) {
@@ -75,7 +69,6 @@ public class Worker extends Thread {
                     continue;
                 }
                 list.add(i);
-                Main.addRank(i);
                 continue;
             }
         }
