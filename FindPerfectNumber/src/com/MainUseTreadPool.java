@@ -23,7 +23,7 @@ public class MainUseTreadPool {
 
         final int availableProcessors = Runtime.getRuntime().availableProcessors();
         System.out.println("我可以使用的邏輯處理器" + availableProcessors);
-        final ExecutorService executor = Executors.newFixedThreadPool(availableProcessors - 1); // 不想用100% cpu跑
+        final ExecutorService executor = Executors.newFixedThreadPool(availableProcessors - 2); // 不想用100% cpu跑
 
         final long start = System.currentTimeMillis();
         for (int i = 1; i < max; i += interval) {
