@@ -23,9 +23,9 @@ public class MainUseTreadPool {
 
         final int availableProcessors = Runtime.getRuntime().availableProcessors();
         System.out.println("我可以使用的邏輯處理器" + availableProcessors);
-        final ExecutorService executor = Executors.newFixedThreadPool(availableProcessors - 2); // 不想用100% cpu跑
+        final ExecutorService executor = Executors.newFixedThreadPool(availableProcessors - 2);// 不想用100% cpu 跑
 
-        final long start = System.currentTimeMillis();
+        final long start = System.nanoTime();
         for (int i = 1; i < max; i += interval) {
             final Worker worker = new Worker(i, i + (interval - 1));
             executor.execute(worker);
@@ -34,12 +34,14 @@ public class MainUseTreadPool {
         executor.shutdown();
 
         if (executor.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)) {
-            System.out.println("main執行緒結束");
+            System.out.println("maincd 執行緒結束");
             System.out.println(rank);
-            final long end = System.currentTimeMillis();
+            final long end = System.nanoTime();
 
+            final long timeInterval = end - start;
             System.out.println("結束應用");
-            System.out.println("共用了" + (end - start) + "毫秒");
+            System.out.println("共用了" + timeInterval + "奈秒");
+            System.out.println("共用了" + timeInterval / 1000000 + "毫秒");
         }
 
     }
