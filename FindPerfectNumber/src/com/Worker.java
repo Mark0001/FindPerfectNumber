@@ -14,12 +14,14 @@ public class Worker extends Thread {
 
     @Override
     public void run() {
-        final List<Integer> list = new ArrayList<Integer>();
 
         for (int i = this.start; i <= this.end; i++) {
             //            System.out.println(Thread.currentThread().getName() + "正在看" + i + "是不是完全數");
             int temp = 1;
-            for (int count = 2; count < Math.sqrt(i); count++) {
+            for (int count = 2; count < i; count++) {
+                if (count * count > i) {
+                    break;
+                }
                 if (i % count == 0) {
                     temp = temp + count;
                     final int temp1 = i / count;
@@ -36,7 +38,6 @@ public class Worker extends Thread {
                     continue;
                 }
                 System.out.println(i + "是完美數字喔");
-                list.add(i);
                 MainUseTreadPool.addRank(i);
             }
         }
