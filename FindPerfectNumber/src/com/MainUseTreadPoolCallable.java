@@ -14,8 +14,8 @@ public class MainUseTreadPoolCallable {
 
     private static int interval = 30;
 
-    //    private static int max = 34000000;
-    private static int max = 8000000;
+        private static int max = 34000000;
+//    private static int max = 8000000;
 
     public static void main(final String[] args) throws InterruptedException {
 

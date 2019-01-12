@@ -12,18 +12,22 @@ public class MainUseTreadPool {
 
     private static int interval = 30;
 
-    //    private static int max = 34000000;
-    private static int max = 8000000;
+        private static int max = 34000000;
+//    private static int max = 8000000;
 
     public static synchronized void addRank(final int number) {
         rank.add(number);
     }
 
-    public static void main(final String[] args) throws InterruptedException {
+    public static List<Integer> getRank() {
+		return rank;
+	}
+
+	public static void main(final String[] args) throws InterruptedException {
 
         final int availableProcessors = Runtime.getRuntime().availableProcessors();
         System.out.println("我可以使用的邏輯處理器" + availableProcessors);
-        final ExecutorService executor = Executors.newFixedThreadPool(availableProcessors - 2);// 不想用100% cpu 跑
+        final ExecutorService executor = Executors.newFixedThreadPool(availableProcessors - 1);// 不想用100% cpu 跑
 
         final long start = System.nanoTime();
         for (int i = 1; i < max; i += interval) {
