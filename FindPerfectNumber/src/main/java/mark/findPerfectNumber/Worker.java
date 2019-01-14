@@ -1,4 +1,4 @@
-package com;
+package mark.findPerfectNumber;
 
 public class Worker extends Thread {
     private int start;

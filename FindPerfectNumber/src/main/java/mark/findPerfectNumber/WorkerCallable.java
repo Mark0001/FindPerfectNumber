@@ -1,4 +1,4 @@
-package com;
+package mark.findPerfectNumber;
 
 import java.util.ArrayList;
 import java.util.List;

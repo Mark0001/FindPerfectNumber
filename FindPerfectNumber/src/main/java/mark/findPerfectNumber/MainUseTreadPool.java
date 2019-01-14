@@ -1,4 +1,4 @@
-package com;
+package mark.findPerfectNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +12,18 @@ public class MainUseTreadPool {
 
     private static int interval = 30;
 
-        private static int max = 34000000;
-//    private static int max = 8000000;
+    private static int max = 34000000;
+    //    private static int max = 8000000;
 
     public static synchronized void addRank(final int number) {
         rank.add(number);
     }
 
     public static List<Integer> getRank() {
-		return rank;
-	}
+        return rank;
+    }
 
-	public static void main(final String[] args) throws InterruptedException {
+    public static void main(final String[] args) throws InterruptedException {
 
         final int availableProcessors = Runtime.getRuntime().availableProcessors();
         System.out.println("我可以使用的邏輯處理器" + availableProcessors);
