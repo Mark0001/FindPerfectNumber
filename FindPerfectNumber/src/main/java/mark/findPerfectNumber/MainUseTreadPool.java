@@ -26,8 +26,9 @@ public class MainUseTreadPool {
     public static void main(final String[] args) throws InterruptedException {
 
         final int availableProcessors = Runtime.getRuntime().availableProcessors();
-        System.out.println("我可以使用的邏輯處理器" + availableProcessors);
-        final ExecutorService executor = Executors.newFixedThreadPool(availableProcessors - 1);// 不想用100% cpu 跑
+        final int usedProcessors = availableProcessors - 2;
+        System.out.println("我使用的邏輯處理器個數：" + usedProcessors);
+        final ExecutorService executor = Executors.newFixedThreadPool(usedProcessors);// 不想用100% cpu 跑
 
         final long start = System.nanoTime();
         for (int i = 1; i < max; i += interval) {
