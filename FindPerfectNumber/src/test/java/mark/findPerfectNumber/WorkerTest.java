@@ -11,13 +11,13 @@ public class WorkerTest {
     @Test
     public void testRun() {
         try {
-            final Worker worker = new Worker(1, 10);
+            final Worker worker = new Worker(1, 30);
             worker.start();
             worker.join();
             System.out.println(MainUseTreadPool.getRank());
             final List<Integer> ans = MainUseTreadPool.getRank();
             final Integer[] ansArray = ans.toArray(new Integer[ans.size()]);
-            assertArrayEquals(new Integer[] { 6 }, ansArray);
+            assertArrayEquals(new Integer[] { 6, 28 }, ansArray);
         } catch (final Exception e) {
             e.printStackTrace();
         }
