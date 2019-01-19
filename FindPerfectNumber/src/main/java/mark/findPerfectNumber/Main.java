@@ -3,7 +3,11 @@ package mark.findPerfectNumber;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class Main {
+
+    final static Logger logger = Logger.getLogger(Main.class);
 
     private static List<Integer> rank = new ArrayList<>();
 
@@ -33,15 +37,15 @@ public class Main {
             w3.join();
             w4.join();
         } catch (final InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
-        System.out.println("main執行緒結束");
-        System.out.println(rank);
+        logger.info("main執行緒結束");
+        logger.info(rank);
         final long end = System.currentTimeMillis();
 
-        System.out.println("結束應用");
-        System.out.println("共用了" + (end - start) + "毫秒");
+        logger.info("結束應用");
+        logger.info("共用了" + (end - start) + "毫秒");
 
     }
 }

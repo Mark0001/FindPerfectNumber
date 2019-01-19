@@ -42,7 +42,7 @@ public class MainUseTreadPoolCallable {
                 }
             }
         } catch (final ExecutionException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         executor.shutdown();
 
