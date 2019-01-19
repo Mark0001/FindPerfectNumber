@@ -24,7 +24,6 @@ public class MainUseTreadPoolCallable {
     public static void main(final String[] args) throws InterruptedException {
 
         final int availableProcessors = Runtime.getRuntime().availableProcessors();
-        //        logger.info("我可以使用的邏輯處理器：" + availableProcessors);
         logger.info("我可以使用的邏輯處理器：" + availableProcessors);
         final int usedProcessors = availableProcessors - 2;
         logger.info("我使用的邏輯處理器個數：" + usedProcessors);
