@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import org.apache.log4j.Logger;
+
 public class WorkerCallable implements Callable<List<Integer>> {
+    final static Logger logger = Logger.getLogger(WorkerCallable.class);
+
     private int start;
     private int end;
 
@@ -17,7 +21,7 @@ public class WorkerCallable implements Callable<List<Integer>> {
     public List<Integer> call() {
         final List<Integer> result = new ArrayList<>();
         for (int i = this.start; i <= this.end; i++) {
-            //            System.out.println(Thread.currentThread().getName() + "正在看" + i + "是不是完全數");
+            //            logger.info(Thread.currentThread().getName() + "正在看" + i + "是不是完全數");
             int temp = 1;
             for (int count = 2; count < i; count++) {
                 if (count * count > i) {
@@ -38,7 +42,7 @@ public class WorkerCallable implements Callable<List<Integer>> {
                 if (temp == 1) {
                     continue;
                 }
-                System.out.println(i + "是完美數字喔");
+                logger.info(i + "是完美數字喔");
                 result.add(i);
             }
         }
