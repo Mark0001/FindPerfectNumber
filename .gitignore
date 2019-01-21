@@ -6,4 +6,4 @@
 .project
 */target/*
 .gitignore
-*/log/*
+FindPerfectNumber/src/main/resources/log/
