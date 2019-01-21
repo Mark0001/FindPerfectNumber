@@ -6,4 +6,4 @@
 .project
 */target/*
 .gitignore
-/log/
+*/log/
