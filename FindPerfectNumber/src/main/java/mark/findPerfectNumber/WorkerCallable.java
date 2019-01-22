@@ -33,6 +33,8 @@ public class WorkerCallable implements Callable<List<Integer>> {
                     if (count != temp1) {
                         temp = temp + temp1;
                     }
+                } else {
+                    continue;
                 }
                 if (temp > i) {
                     break;
