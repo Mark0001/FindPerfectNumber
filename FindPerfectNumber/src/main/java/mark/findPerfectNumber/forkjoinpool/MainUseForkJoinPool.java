@@ -11,7 +11,7 @@ public class MainUseForkJoinPool {
     final static Logger logger = Logger.getLogger(MainUseForkJoinPool.class);
 
     private static int threadhold = 30;
-    private static int max = 8128;
+    private static int max = 34000000;
 
     public static void main(final String[] args) {
 

@@ -9,10 +9,9 @@ import org.apache.log4j.Logger;
 public class WorkerForkJoin extends RecursiveTask<List<Integer>> {
     private static final long serialVersionUID = 1L;
 
-    private int threadhold;
-
     final static Logger logger = Logger.getLogger(WorkerForkJoin.class);
 
+    private int threadhold;
     private int start;
     private int end;
 
@@ -25,7 +24,8 @@ public class WorkerForkJoin extends RecursiveTask<List<Integer>> {
     @Override
     protected List<Integer> compute() {
 
-        if (this.end - this.start >= this.threadhold) {
+        if (this.end - this.start <= this.threadhold) {
+            //            logger.info(this.start + "~~" + this.end);
             return this.findAnswer(this.start, this.end);
         } else {
             return divideWorks();
@@ -35,9 +35,9 @@ public class WorkerForkJoin extends RecursiveTask<List<Integer>> {
     private List<Integer> divideWorks() {
         final List<Integer> ans = new ArrayList<>();
 
-        final int middle = this.end / 2;
+        final int middle = (this.start + this.end) / 2;
 
-        final WorkerForkJoin w1 = new WorkerForkJoin(this.start + 1, middle, this.threadhold);
+        final WorkerForkJoin w1 = new WorkerForkJoin(this.start, middle, this.threadhold);
         final WorkerForkJoin w2 = new WorkerForkJoin(middle + 1, this.end, this.threadhold);
 
         invokeAll(w1, w2);
@@ -78,11 +78,11 @@ public class WorkerForkJoin extends RecursiveTask<List<Integer>> {
             }
         }
 
-        try {
-            Thread.sleep(100);
-        } catch (final InterruptedException e) {
-            e.printStackTrace();
-        }
+        //        try {
+        //            Thread.sleep(100);
+        //        } catch (final InterruptedException e) {
+        //            e.printStackTrace();
+        //        }
         return result;
     }
 }
