@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 
 public class MainUseTreadPool {
-    final static Logger logger = Logger.getLogger(WorkerCallable.class);
+    final static Logger logger = Logger.getLogger(MainUseTreadPool.class);
 
     private static List<Integer> rank = new ArrayList<>();
 
