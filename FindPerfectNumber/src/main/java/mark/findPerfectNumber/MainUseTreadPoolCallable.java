@@ -34,19 +34,19 @@ public class MainUseTreadPoolCallable {
         for (int i = 1; i < max; i += interval) {
             futures.add(executor.submit(new WorkerCallable(i, i + (interval - 1))));
         }
-        try {
-            for (final Future<List<Integer>> future : futures) {
-                if (future.isDone() && !future.get().isEmpty()) {
-                    rank.addAll(future.get());
-                }
-            }
-        } catch (final ExecutionException e) {
-            logger.error(e.getMessage(), e);
-        }
         executor.shutdown();
 
         if (executor.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS)) {
 
+            try {
+                for (final Future<List<Integer>> future : futures) {
+                    if (future.isDone() && !future.get().isEmpty()) {
+                        rank.addAll(future.get());
+                    }
+                }
+            } catch (final ExecutionException e) {
+                logger.error(e.getMessage(), e);
+            }
             logger.info("maincd 執行緒結束");
             logger.info(rank);
             final long end = System.nanoTime();
