@@ -77,12 +77,6 @@ public class WorkerForkJoin extends RecursiveTask<List<Integer>> {
                 result.add(i);
             }
         }
-
-        //        try {
-        //            Thread.sleep(100);
-        //        } catch (final InterruptedException e) {
-        //            e.printStackTrace();
-        //        }
         return result;
     }
 }
