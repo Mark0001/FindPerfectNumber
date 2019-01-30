@@ -11,20 +11,20 @@ public class WorkerForkJoin extends RecursiveTask<List<Integer>> {
 
     final static Logger logger = Logger.getLogger(WorkerForkJoin.class);
 
-    private int threadhold;
+    private int threshold;
     private int start;
     private int end;
 
-    public WorkerForkJoin(final int start, final int end, final int threadhold) {
+    public WorkerForkJoin(final int start, final int end, final int threshold) {
         this.start = start;
         this.end = end;
-        this.threadhold = threadhold;
+        this.threshold = threshold;
     }
 
     @Override
     protected List<Integer> compute() {
 
-        if (this.end - this.start <= this.threadhold) {
+        if (this.end - this.start <= this.threshold) {
             //            logger.info(this.start + "~~" + this.end);
             return this.findAnswer(this.start, this.end);
         } else {
@@ -37,8 +37,8 @@ public class WorkerForkJoin extends RecursiveTask<List<Integer>> {
 
         final int middle = (this.start + this.end) / 2;
 
-        final WorkerForkJoin w1 = new WorkerForkJoin(this.start, middle, this.threadhold);
-        final WorkerForkJoin w2 = new WorkerForkJoin(middle + 1, this.end, this.threadhold);
+        final WorkerForkJoin w1 = new WorkerForkJoin(this.start, middle, this.threshold);
+        final WorkerForkJoin w2 = new WorkerForkJoin(middle + 1, this.end, this.threshold);
 
         invokeAll(w1, w2);
 

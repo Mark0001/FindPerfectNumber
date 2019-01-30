@@ -10,7 +10,7 @@ public class MainUseForkJoinPool {
 
     final static Logger logger = Logger.getLogger(MainUseForkJoinPool.class);
 
-    private static int threadhold = 30;
+    private static int threshold = 30;
     private static int max = 34000000;
 
     public static void main(final String[] args) {
@@ -21,7 +21,7 @@ public class MainUseForkJoinPool {
         final long start = System.nanoTime();
         final List<Integer> ans = new ArrayList<>();
 
-        ans.addAll(pool.invoke(new WorkerForkJoin(1, max, threadhold)));
+        ans.addAll(pool.invoke(new WorkerForkJoin(1, max, threshold)));
         logger.info(ans);
         pool.shutdown();
 
