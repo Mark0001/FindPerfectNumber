@@ -12,8 +12,9 @@ public class WorkerTest {
     public void testRun() {
         try {
             final Worker worker = new Worker(1, 30);
-            worker.start();
-            worker.join();
+            Thread tWorker = new Thread(worker);
+            tWorker.start();
+            tWorker.join();
             System.out.println(MainUseTreadPool.getRank());
             final List<Integer> ans = MainUseTreadPool.getRank();
             final Integer[] ansArray = ans.toArray(new Integer[ans.size()]);
